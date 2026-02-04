@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatsApp Bug Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #25D366;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1da851;
+    }
+    .report {
+      background: #e9ffe9;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>BUG WhatsApp ByYanZ Kls 8-1😜</h1><label>Pilih bug</label>
+<select id="type">
+  <option>Crash / Force Close</option>
+  <option>Tidak Bisa Kirim Pesan</option>
+  <option>Panggilan terputus terus</option>
+  <option>Delay hard ByRyann</option>
+  <option>Blank UI</option>
+  <option>CRASH UI INFINITY</option>
+</select>
+<label>masukan nomor TARGET</label>
+<input type="text" id="version" placeholder="contoh: +62xxxxxxx"/>
+<label>Versi WhatsApp</label>
+<input type="text" id="version" placeholder="contoh: 2.26.xx" />
+
+<label>Deskrip untuk si target </label>
+<textarea id="description" rows="4" placeholder="buat kata kata ke dia supaya ada notif datang kepada nya..."></textarea>
+
+<button onclick="submitBug()">Send bug ganas</button>
+
+<div id="reports"></div>
+
+  </div>  <script>
+    function submitBug() {
+      const type = document.getElementById('type').value;
+      const version = document.getElementById('version').value;
+      const description = document.getElementById('description').value;
+
+      if (!version || !description) {
+        alert('Mohon lengkapi semua data untuk si Target');
+        return;
+      }
+
+      const report = { type, version, description, date: new Date().toLocaleString() };
+
+      let reports = JSON.parse(localStorage.getItem('bugReports')) || [];
+      reports.push(report);
+      localStorage.setItem('bugReports', JSON.stringify(reports));
+
+      displayReports();
+      document.getElementById('description').value = '';
+    }
+
+    function displayReports() {
+      const reports = JSON.parse(localStorage.getItem('bugReports')) || [];
+      const container = document.getElementById('reports');
+      container.innerHTML = '<h3>Bug Terkirim</h3>';
+
+      reports.forEach(r => {
+        container.innerHTML += `
+          <div class="report">
+            <strong>${r.type}</strong><br>
+            Versi: ${r.version}<br>
+            ${r.description}<br>
+            <small>${r.date}</small>
+          </div>
+        `;
+      });
+    }
+
+    displayReports();
+  </script>
+</body>
+</html>
+by Ryann>
+From Indonesian 
